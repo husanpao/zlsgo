@@ -274,7 +274,7 @@ func (log *Logger) outPut(level int, s string, isWrap bool, fn func() func(),
 
 // Printf formats according to a format specifier and writes to standard output
 func (log *Logger) Printf(format string, v ...interface{}) {
-	_ = log.outPut(LogNot, fmt.Sprintf(format, v...), false, nil)
+	_ = log.outPut(LogNot, fmt.Sprintf(format, v...), true, nil)
 }
 
 // Println Println
@@ -284,7 +284,7 @@ func (log *Logger) Println(v ...interface{}) {
 
 // Debugf Debugf
 func (log *Logger) Debugf(format string, v ...interface{}) {
-	_ = log.outPut(LogDebug, fmt.Sprintf(format, v...), false, nil)
+	_ = log.outPut(LogDebug, fmt.Sprintf(format, v...), true, nil)
 }
 
 // Debug Debug
@@ -311,7 +311,7 @@ func (log *Logger) Dump(v ...interface{}) {
 
 // Successf output Success
 func (log *Logger) Successf(format string, v ...interface{}) {
-	_ = log.outPut(LogSuccess, fmt.Sprintf(format, v...), false, nil)
+	_ = log.outPut(LogSuccess, fmt.Sprintf(format, v...), true, nil)
 }
 
 // Success output Success
@@ -321,7 +321,7 @@ func (log *Logger) Success(v ...interface{}) {
 
 // Infof output Info
 func (log *Logger) Infof(format string, v ...interface{}) {
-	_ = log.outPut(LogInfo, fmt.Sprintf(format, v...), false, nil)
+	_ = log.outPut(LogInfo, fmt.Sprintf(format, v...), true, nil)
 }
 
 // Info output Info
@@ -331,7 +331,7 @@ func (log *Logger) Info(v ...interface{}) {
 
 // Tipsf output Tips
 func (log *Logger) Tipsf(format string, v ...interface{}) {
-	_ = log.outPut(LogTips, fmt.Sprintf(format, v...), false, nil)
+	_ = log.outPut(LogTips, fmt.Sprintf(format, v...), true, nil)
 }
 
 // Tips output Tips
@@ -341,7 +341,7 @@ func (log *Logger) Tips(v ...interface{}) {
 
 // Warnf output Warn
 func (log *Logger) Warnf(format string, v ...interface{}) {
-	_ = log.outPut(LogWarn, fmt.Sprintf(format, v...), false, nil)
+	_ = log.outPut(LogWarn, fmt.Sprintf(format, v...), true, nil)
 }
 
 // Warn output Warn
@@ -351,7 +351,7 @@ func (log *Logger) Warn(v ...interface{}) {
 
 // Errorf output Error
 func (log *Logger) Errorf(format string, v ...interface{}) {
-	_ = log.outPut(LogError, fmt.Sprintf(format, v...), false, nil)
+	_ = log.outPut(LogError, fmt.Sprintf(format, v...), true, nil)
 }
 
 // Error output Error
@@ -361,7 +361,7 @@ func (log *Logger) Error(v ...interface{}) {
 
 // Fatalf output Fatal
 func (log *Logger) Fatalf(format string, v ...interface{}) {
-	_ = log.outPut(LogFatal, fmt.Sprintf(format, v...), false, nil)
+	_ = log.outPut(LogFatal, fmt.Sprintf(format, v...), true, nil)
 	osExit(1)
 }
 
@@ -374,7 +374,7 @@ func (log *Logger) Fatal(v ...interface{}) {
 // Panicf output Panic
 func (log *Logger) Panicf(format string, v ...interface{}) {
 	s := fmt.Sprintf(format, v...)
-	_ = log.outPut(LogPanic, fmt.Sprintf(format, s), false, nil)
+	_ = log.outPut(LogPanic, fmt.Sprintf(format, s), true, nil)
 	panic(s)
 }
 
