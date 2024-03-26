@@ -54,6 +54,29 @@ func FileExist(path string) bool {
 	return state == 2
 }
 
+// Ls retrieves all subfiles and subfolders under the specified folder.
+func Ls(path string) ([]string, error) {
+	var items []string
+
+	// Check if the folder exists
+	if !DirExist(path) {
+		return nil, os.ErrNotExist
+	}
+
+	// Walk through the folder
+	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
+		// Append the item path to the slice
+		items = append(items, path)
+		return nil
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	return items, nil
+}
+
 // FileSize file size
 func FileSize(file string) (size string) {
 	return SizeFormat(FileSizeUint(file))
