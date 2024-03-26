@@ -64,11 +64,16 @@ func Ls(folderPath string) ([]string, error) {
 	}
 
 	// Walk through the folder
-	err := filepath.Walk(folderPath, func(path string, info os.FileInfo, err error) error {
+	fileInfos, err := os.ReadDir(folderPath)
+	if err != nil {
+		return nil, err
+	}
+
+	// Iterate over the contents
+	for _, fileInfo := range fileInfos {
 		// Append the item path to the slice
-		items = append(items, path)
-		return nil
-	})
+		items = append(items, filepath.Join(folderPath, fileInfo.Name()))
+	}
 
 	if err != nil {
 		return nil, err
